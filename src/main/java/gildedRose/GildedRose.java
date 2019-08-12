@@ -1,6 +1,11 @@
 package gildedRose;
 
 public class GildedRose {
+
+    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String AGED = "Aged Brie";
+    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -58,15 +63,15 @@ public class GildedRose {
         }
     }
     private boolean isBackstage(Item item) {
-        return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+        return item.name.equals(BACKSTAGE);
     }
 
     private boolean isAged(Item item) {
-        return item.name.equals("Aged Brie");
+        return item.name.equals(AGED);
     }
 
     private boolean isSulfuras(Item item) {
-        return item.name.equals("Sulfuras, Hand of Ragnaros");
+        return item.name.equals(SULFURAS);
     }
 
     private void resetQualityToZero(int i) {
