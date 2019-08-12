@@ -1,4 +1,5 @@
 package gildedRose;
+
 public class GildedRose {
     Item[] items;
 
@@ -12,23 +13,21 @@ public class GildedRose {
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (items[i].quality > 0) {
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
+                        subQuality(i);
                     }
                 }
             } else {
                 if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
+                    addQuality(i);
                     if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].sellIn < 11) {
                             if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                                addQuality(i);
                             }
                         }
-
                         if (items[i].sellIn < 6) {
                             if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                                addQuality(i);
                             }
                         }
                     }
@@ -36,7 +35,7 @@ public class GildedRose {
             }
 
             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
+                subSellIn(i);
             }
 
             if (items[i].sellIn < 0) {
@@ -44,18 +43,34 @@ public class GildedRose {
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
+                                subQuality(i);
                             }
                         }
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        resetQualityToZero(i);
                     }
                 } else {
                     if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                        addQuality(i);
                     }
                 }
             }
         }
+    }
+
+    private void resetQualityToZero(int i) {
+        items[i].quality = 0;
+    }
+
+    private void subSellIn(int i) {
+        items[i].sellIn = items[i].sellIn - 1;
+    }
+
+    private void addQuality(int i) {
+        items[i].quality = items[i].quality + 1;
+    }
+
+    private void subQuality(int i) {
+        items[i].quality = items[i].quality - 1;
     }
 }
