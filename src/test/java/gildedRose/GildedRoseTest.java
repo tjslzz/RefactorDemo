@@ -15,7 +15,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_return_when_call_updateQuality_given_(){
+    public void should_return_0_when_call_updateQuality_given_not_a_sulfuras(){
         //given
         items[0] = new Item("Not Sulfuras, Hand of Ragnaros",1,1);
         items[1] = new Item("Not Sulfuras, Hand of Ragnaros",1,1);
@@ -24,6 +24,17 @@ public class GildedRoseTest {
         gildedRose.updateQuality();
         //then
         assertEquals(0,items[0].quality);
+    }
+    @Test
+    public void should_return_0_when_call_updateQuality_given_a_sulfuras(){
+        //given
+        items[0] = new Item("Sulfuras, Hand of Ragnaros",1,1);
+        items[1] = new Item("Sulfuras, Hand of Ragnaros",1,1);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals(1,items[0].quality);
     }
 
 }
