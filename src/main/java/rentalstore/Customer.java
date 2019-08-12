@@ -22,7 +22,7 @@ public class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        String result = "Rental Record for " + getName() + "\n";
+        String result = getHeader();
         for (Rental each : this.rentals) {
             double thisAmount = 0;
 
@@ -60,9 +60,14 @@ public class Customer {
         return result;
     }
 
+    private String getHeader() {
+        return "Rental Record for " + getName() + "\n";
+    }
+
     protected String footerStr(double totalAmount, int frequentRenterPoints) {
         String footer = "Amount owed is " + String.valueOf(totalAmount) + "\n";
         footer += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return footer;
     }
+
 }
