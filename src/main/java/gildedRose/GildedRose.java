@@ -14,90 +14,57 @@ public class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            handleQuality(i);
-            handleSellIn(i);
-
+            handleQualityWithSellIn(i);
         }
     }
 
-    private void handleSellIn(int i) {
+    private void handleQualityWithSellIn(int i) {
         switch (items[i].name) {
             case AGED:
-                sellinForAged(i);
+                handleAged(i);
                 break;
             case BACKSTAGE:
-                sellinForBackstage(i);
+                handleBackstage(i);
                 break;
             case SULFURAS:
+                handleSulfuras(i);
                 break;
             default:
-                checkQuality(i);
+                handleOther(i);
                 break;
         }
     }
 
-    private void sellinForBackstage(int i) {
+    private void handleAged(int i) {
         subSellIn(i);
-        if (items[i].sellIn < 0) {
-            resetQualityToZero(i);
-        }
+        int addNum = items[i].sellIn < 0 && items[i].quality < 50 ? 2 : 1;
+        addQuality(i, addNum);
     }
 
-    private void checkQuality(int i) {
+    private void handleBackstage(int i) {
         subSellIn(i);
-        if (items[i].quality > 0 && items[i].sellIn < 0) {
-            subQuality(i);
-        }
+        if (items[i].sellIn < 0) resetQualityToZero(i);
+        else addQuality(i,compareToBackstage(i));
     }
 
-    private void sellinForAged(int i) {
-        subSellIn(i);
-        if (items[i].sellIn < 0 && items[i].quality < 50) {
-            addQuality(i, 1);
-        }
-    }
-
-    private void handleQuality(int i) {
-        switch (items[i].name) {
-            case AGED:
-                qualityLittleFiftyForAandS(i);
-                break;
-            case BACKSTAGE:
-                qualityLittleFiftyForBackstage(i);
-                break;
-            case SULFURAS:
-                qualityLittleFiftyForAandS(i);
-                break;
-            default:
-                subQuality(i);
-                break;
-        }
-    }
-
-    private void qualityLittleFiftyForBackstage(int i) {
+    private int compareToBackstage(int i){
         if (items[i].quality < 6)
-            addQuality(i, 3);
+            return 3;
         else if (items[i].quality < 11)
-            addQuality(i, 2);
+            return 2;
         else if (items[i].quality < 50)
-            addQuality(i, 1);
+            return 1;
+        return 0;
     }
 
-    private void qualityLittleFiftyForAandS(int i) {
-        if (items[i].quality < 50)
-            addQuality(i, 1);
+    private void handleSulfuras(int i) {
+        if (items[i].quality < 50) addQuality(i, 1);
     }
 
-    private boolean isBackstage(Item item) {
-        return item.name.equals(BACKSTAGE);
-    }
-
-    private boolean isAged(Item item) {
-        return item.name.equals(AGED);
-    }
-
-    private boolean isSulfuras(Item item) {
-        return item.name.equals(SULFURAS);
+    private void handleOther(int i) {
+        subSellIn(i);
+        int subNum = items[i].sellIn < 0 && items[i].quality < 50 ? 2 : 1;
+        subQuality(i, subNum);
     }
 
     private void resetQualityToZero(int i) {
@@ -112,7 +79,7 @@ public class GildedRose {
         items[i].quality = items[i].quality + num;
     }
 
-    private void subQuality(int i) {
-        items[i].quality = items[i].quality - 1;
+    private void subQuality(int i,int subNum) {
+        items[i].quality = items[i].quality - subNum;
     }
 }
