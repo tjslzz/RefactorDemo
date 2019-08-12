@@ -160,4 +160,16 @@ public class GildedRoseTest {
         //then
         assertEquals(0,items[1].quality);
     }
+
+    @Test
+    public void should_return_0_quality_when_call_updateQuality_given_1_of_sellin_and_something_cool(){
+        //given
+        items[0] = new Item("somethingCool",-1,1);
+        items[1] = new Item("somethingCool",-1,1);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals(0,items[0].quality);
+    }
 }
