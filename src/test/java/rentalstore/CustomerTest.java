@@ -53,12 +53,6 @@ public class CustomerTest {
     }
 
     @Test
-    public void should_return_rentalReciept_footer_when_call_footer_str(){
-        Customer customer = new Customer("Felicity");
-        assertEquals("Amount owed is 0.0\nYou earned 0 frequent renter points",customer.footerStr(0.0,0));
-    }
-
-    @Test
     public void should_return_rentalReciept_result_when_call_statement_given_Movie_regular_getDayRented_1() {
         Customer customer = new Customer("Jerry");
         Movie regularMovie = new Movie("FJerry", 0);

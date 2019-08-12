@@ -15,74 +15,11 @@ public class Customer {
         rentals.add(arg);
     }
 
-    public String getName() {
-        return name;
+    public String htmlStatement() {
+        return new RentalHtmlReceipt().statement(rentals, name);
     }
 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        String result = getHeader();
-        for (Rental each : this.rentals) {
-            double thisAmount = each.calculateAmountByMovieType();
-
-            frequentRenterPoints += increaseFrequentRenterPointsEveryMovie(isNewReleaseOverOneDay(each));
-
-            result += getEachMovieInfo(each, thisAmount);
-            totalAmount += thisAmount;
-        }
-        result += footerStr(totalAmount, frequentRenterPoints);
-        return result;
-    }
-
-    private boolean isNewReleaseOverOneDay(Rental each) {
-        return (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1;
-    }
-
-    private int increaseFrequentRenterPointsEveryMovie(boolean isNewReleaseOverOneDay) {
-        return isNewReleaseOverOneDay ? 2 : 1;
-    }
-
-    private String getEachMovieInfo(Rental each, double thisAmount) {
-        return "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-    }
-
-    private String getHeader() {
-        return "Rental Record for " + getName() + "\n";
-    }
-
-    protected String footerStr(double totalAmount, int frequentRenterPoints) {
-        String footer = "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        footer += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-        return footer;
-    }
-
-
-    public String htmlStatement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-        for (Rental each : this.rentals) {
-            double thisAmount = each.calculateAmountByMovieType();
-
-            //add frequent renter points
-            frequentRenterPoints++;
-            //add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1) {
-                frequentRenterPoints++;
-            }
-
-            //show figures for this rental
-            result += each.getMovie().getTitle() + ": " + String.valueOf(thisAmount) + "<BR>\n";
-            totalAmount += thisAmount;
-        }
-
-        result += htmlFooterStr(totalAmount, frequentRenterPoints);
-        return result;
-    }
-
-    private String htmlFooterStr(double totalAmount, int frequentRenterPoints) {
-        return "<P>You owe<EM>" + totalAmount + "</EM><P>\n" +
-                "On this rental you earned <EM>" + frequentRenterPoints + "</EM> frequent renter points<P>";
+        return new RentalTextReceipt().statement(rentals, name);
     }
 }
