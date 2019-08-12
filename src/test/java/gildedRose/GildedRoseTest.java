@@ -138,4 +138,15 @@ public class GildedRoseTest {
         //then
         assertEquals(42,items[0].quality);
     }
+    @Test
+    public void should_return_51_quality_when_call_updateQuality_given_51_of_quality_and_backstage_and_1_of_sellin(){
+        //given
+        items[0] = new Item("Aged Brie",-1,51);
+        items[1] = new Item("Backstage passes to a TAFKAL80ETC concert",40,40);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals(51,items[0].quality);
+    }
 }
