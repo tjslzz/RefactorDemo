@@ -44,12 +44,7 @@ public class Customer {
                     break;
             }
 
-            //add frequent renter points
-            frequentRenterPoints++;
-            //add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1) {
-                frequentRenterPoints++;
-            }
+            frequentRenterPoints += increaseFrequentRenterPointsEveryMovie(isNewReleaseOverOneDay(each));
 
             result += getEachMovieInfo(each, thisAmount);
             totalAmount += thisAmount;
@@ -57,6 +52,14 @@ public class Customer {
 
         result += footerStr(totalAmount, frequentRenterPoints);
         return result;
+    }
+
+    private boolean isNewReleaseOverOneDay(Rental each) {
+        return (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1;
+    }
+
+    private int increaseFrequentRenterPointsEveryMovie(boolean isNewReleaseOverOneDay) {
+        return isNewReleaseOverOneDay? 2: 1;
     }
 
     private String getEachMovieInfo(Rental each, double thisAmount) {
