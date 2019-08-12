@@ -116,4 +116,15 @@ public class GildedRoseTest {
         //then
         assertEquals(0,items[0].sellIn);
     }
+    @Test
+    public void should_return_1_sellin_when_call_updateQuality_given_sulfuras_and_1_of_sellin(){
+        //given
+        items[0] = new Item("Sulfuras, Hand of Ragnaros",1,0);
+        items[1] = new Item("Backstage passes to a TAFKAL80ETC concert",1,0);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals(1,items[0].sellIn);
+    }
 }
