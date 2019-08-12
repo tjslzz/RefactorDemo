@@ -43,9 +43,31 @@ public class CustomerTest {
     }
 
     @Test
+    public void should_result_when_call_statement_given_Movie_childrens_getDayRented_2(){
+        Customer customer = new Customer("Felicity");
+        Movie childrensMovie = new Movie("JFelicity", 2);
+        Rental fourDayRental = new Rental(childrensMovie, 2);
+        customer.addRental(fourDayRental);
+
+        assertEquals("Rental Record for Felicity\n\tJFelicity\t1.5\nAmount owed is 1.5\nYou earned 1 frequent renter points", customer.statement());
+    }
+
+    @Test
     public void should_return_footer_when_call_footer_str(){
         Customer customer = new Customer("Felicity");
         assertEquals("Amount owed is 0.0\nYou earned 0 frequent renter points",customer.footerStr(0.0,0));
     }
+
+    @Test
+    public void should_return_result_when_call_statement_given_Movie_regular_getDayRented_1() {
+        Customer customer = new Customer("Jerry");
+        Movie regularMovie = new Movie("FJerry", 0);
+        Rental threeDayRental = new Rental(regularMovie, 1);
+        customer.addRental(threeDayRental);
+
+        assertEquals("Rental Record for Jerry\n\tFJerry\t2.0\nAmount owed is 2.0\nYou earned 1 frequent renter points", customer.statement());
+
+    }
+
 
 }
