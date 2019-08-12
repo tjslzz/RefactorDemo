@@ -9,15 +9,15 @@ public class Rental {
         this.dayRented = dayRented;
     }
 
-    public Movie getMovie() {
+    Movie getMovie() {
         return movie;
     }
 
-    public int getDayRented() {
+    int getDayRented() {
         return dayRented;
     }
 
-    public double calculateAmountByMovieType() {
+    double calculateAmountByMovieType() {
         double thisAmount = 0.0;
         switch (this.getMovie().getPriceCode()) {
             case Movie.REGULAR:

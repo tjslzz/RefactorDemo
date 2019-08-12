@@ -3,7 +3,7 @@ package rentalstore;
 import java.util.List;
 
 public abstract class RentalReceipt {
-    public String statement(List<Rental> rentals, String name) {
+    String statement(List<Rental> rentals, String name) {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
         String result = getHeader(name);
