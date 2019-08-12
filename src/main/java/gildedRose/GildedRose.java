@@ -15,28 +15,45 @@ public class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             handleQuality(i);
+            handleSellIn(i);
 
-            if (!isSulfuras(items[i])) {
-                subSellIn(i);
-            }
+        }
+    }
 
-            if (items[i].sellIn < 0) {
-                if (!isAged(items[i])) {
-                    if (!isBackstage(items[i])) {
-                        if (items[i].quality > 0) {
-                            if (!isSulfuras(items[i])) {
-                                subQuality(i);
-                            }
-                        }
-                    } else {
-                        resetQualityToZero(i);
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        addQuality(i,1);
-                    }
-                }
-            }
+    private void handleSellIn(int i) {
+        switch (items[i].name) {
+            case AGED:
+                sellinForAged(i);
+                break;
+            case BACKSTAGE:
+                sellinForBackstage(i);
+                break;
+            case SULFURAS:
+                break;
+            default:
+                checkQuality(i);
+                break;
+        }
+    }
+
+    private void sellinForBackstage(int i) {
+        subSellIn(i);
+        if (items[i].sellIn < 0) {
+            resetQualityToZero(i);
+        }
+    }
+
+    private void checkQuality(int i) {
+        subSellIn(i);
+        if (items[i].quality > 0 && items[i].sellIn < 0) {
+            subQuality(i);
+        }
+    }
+
+    private void sellinForAged(int i) {
+        subSellIn(i);
+        if (items[i].sellIn < 0 && items[i].quality < 50) {
+            addQuality(i, 1);
         }
     }
 
@@ -58,17 +75,17 @@ public class GildedRose {
     }
 
     private void qualityLittleFiftyForBackstage(int i) {
-        if(items[i].quality < 6)
-            addQuality(i,3);
-        else if(items[i].quality < 11)
-            addQuality(i,2);
-        else if(items[i].quality < 50)
-            addQuality(i,1);
+        if (items[i].quality < 6)
+            addQuality(i, 3);
+        else if (items[i].quality < 11)
+            addQuality(i, 2);
+        else if (items[i].quality < 50)
+            addQuality(i, 1);
     }
 
     private void qualityLittleFiftyForAandS(int i) {
         if (items[i].quality < 50)
-            addQuality(i,1);
+            addQuality(i, 1);
     }
 
     private boolean isBackstage(Item item) {
@@ -91,7 +108,7 @@ public class GildedRose {
         items[i].sellIn = items[i].sellIn - 1;
     }
 
-    private void addQuality(int i,int num) {
+    private void addQuality(int i, int num) {
         items[i].quality = items[i].quality + num;
     }
 
