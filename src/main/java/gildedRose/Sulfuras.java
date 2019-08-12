@@ -1,13 +1,14 @@
 package gildedRose;
 
-public class Sulfuras extends RoseFather{
-    public Sulfuras(Item item) {
+public class Sulfuras extends RoseFather {
+
+    Sulfuras(Item item) {
         super(item);
     }
 
     @Override
     public Item GildedRose() {
-        if (item.quality < 50) addQuality( 1);
+        if (item.quality < LIMIT) addQuality(1);
         return item;
     }
 }

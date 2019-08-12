@@ -1,17 +1,19 @@
 package gildedRose;
 
 public abstract class RoseFather {
-    protected Item item;
+    static final int LIMIT = 50;
 
-    public RoseFather(Item item) {
+    Item item;
+
+    RoseFather(Item item) {
         this.item = item;
     }
 
-    protected void subSellIn() {
-        item.sellIn = item.sellIn - 1;
+    void subSellIn() {
+        item.sellIn = --item.sellIn;
     }
 
-    protected void addQuality(int num) {
+    void addQuality(int num) {
         item.quality = item.quality + num;
     }
 
