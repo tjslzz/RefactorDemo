@@ -17,8 +17,7 @@ public class GildedRoseTest {
         //when
         gildedRose.updateQuality();
         //then
-        assertEquals("Aged Brie," +
-                " -2, 42", items[0].toString());
+        assertEquals("Aged Brie, -2, 42", items[0].toString());
     }
 
     @Test
