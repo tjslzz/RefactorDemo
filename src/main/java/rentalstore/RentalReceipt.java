@@ -26,7 +26,7 @@ public abstract class RentalReceipt {
     protected abstract String getHeader(String name);
 
     private boolean isNewReleaseOverOneDay(Rental each) {
-        return (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1;
+        return (each.getMovie() instanceof NewReleaseMovie) && each.getDayRented() > 1;
     }
 
     private int increaseFrequentRenterPointsEveryMovie(boolean isNewReleaseOverOneDay) {
