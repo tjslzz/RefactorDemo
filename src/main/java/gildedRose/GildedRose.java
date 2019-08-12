@@ -21,65 +21,17 @@ public class GildedRose {
     private void handleQualityWithSellIn(int i) {
         switch (items[i].name) {
             case AGED:
-                handleAged(i);
+                items[i] = new AgedBrie(items[i]).GildedRose();
                 break;
             case BACKSTAGE:
-                handleBackstage(i);
+                items[i] = new Backstage(items[i]).GildedRose();
                 break;
             case SULFURAS:
-                handleSulfuras(i);
+                items[i] = new Sulfuras(items[i]).GildedRose();
                 break;
             default:
-                handleOther(i);
+                items[i] = new OtherScene(items[i]).GildedRose();
                 break;
         }
-    }
-
-    private void handleAged(int i) {
-        subSellIn(i);
-        int addNum = items[i].sellIn < 0 && items[i].quality < 50 ? 2 : 1;
-        addQuality(i, addNum);
-    }
-
-    private void handleBackstage(int i) {
-        subSellIn(i);
-        if (items[i].sellIn < 0) resetQualityToZero(i);
-        else addQuality(i,compareToBackstage(i));
-    }
-
-    private int compareToBackstage(int i){
-        if (items[i].quality < 6)
-            return 3;
-        else if (items[i].quality < 11)
-            return 2;
-        else if (items[i].quality < 50)
-            return 1;
-        return 0;
-    }
-
-    private void handleSulfuras(int i) {
-        if (items[i].quality < 50) addQuality(i, 1);
-    }
-
-    private void handleOther(int i) {
-        subSellIn(i);
-        int subNum = items[i].sellIn < 0 && items[i].quality < 50 ? 2 : 1;
-        subQuality(i, subNum);
-    }
-
-    private void resetQualityToZero(int i) {
-        items[i].quality = 0;
-    }
-
-    private void subSellIn(int i) {
-        items[i].sellIn = items[i].sellIn - 1;
-    }
-
-    private void addQuality(int i, int num) {
-        items[i].quality = items[i].quality + num;
-    }
-
-    private void subQuality(int i,int subNum) {
-        items[i].quality = items[i].quality - subNum;
     }
 }
