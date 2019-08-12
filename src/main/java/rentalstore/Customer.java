@@ -26,32 +26,36 @@ public class Customer {
         for (Rental each : this.rentals) {
             double thisAmount = 0;
 
-            switch (each.getMovie().getPriceCode()) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDayRented() > 2) {
-                        thisAmount += (each.getDayRented() - 2) * 1.5;
-                    }
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDayRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-                    if (each.getDayRented() > 3) {
-                        thisAmount += (each.getDayRented() - 3) * 1.5;
-                    }
-                    break;
-            }
+            thisAmount = calculateAmountByMovieType(each, thisAmount);
 
             frequentRenterPoints += increaseFrequentRenterPointsEveryMovie(isNewReleaseOverOneDay(each));
 
             result += getEachMovieInfo(each, thisAmount);
             totalAmount += thisAmount;
         }
-
         result += footerStr(totalAmount, frequentRenterPoints);
         return result;
+    }
+
+    private double calculateAmountByMovieType(Rental each, double thisAmount) {
+        switch (each.getMovie().getPriceCode()) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (each.getDayRented() > 2) {
+                    thisAmount += (each.getDayRented() - 2) * 1.5;
+                }
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += each.getDayRented() * 3;
+                break;
+            case Movie.CHILDRENS:
+                thisAmount += 1.5;
+                if (each.getDayRented() > 3) {
+                    thisAmount += (each.getDayRented() - 3) * 1.5;
+                }
+                break;
+        }
+        return thisAmount;
     }
 
     private boolean isNewReleaseOverOneDay(Rental each) {
