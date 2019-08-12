@@ -51,13 +51,16 @@ public class Customer {
                 frequentRenterPoints++;
             }
 
-            //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
+            result += getEachMovieInfo(each, thisAmount);
             totalAmount += thisAmount;
         }
 
         result += footerStr(totalAmount, frequentRenterPoints);
         return result;
+    }
+
+    private String getEachMovieInfo(Rental each, double thisAmount) {
+        return "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
     }
 
     private String getHeader() {
