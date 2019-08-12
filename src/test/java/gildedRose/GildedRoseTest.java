@@ -94,4 +94,15 @@ public class GildedRoseTest {
         //then
         assertEquals(42,items[1].quality);
     }
+    @Test
+    public void should_return_43_when_call_updateQuality_given_40_of_quality_and_backstage_and_5_of_sellin(){
+        //given
+        items[0] = new Item("Aged Brie",1,40);
+        items[1] = new Item("Backstage passes to a TAFKAL80ETC concert",5,40);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals(43,items[1].quality);
+    }
 }
