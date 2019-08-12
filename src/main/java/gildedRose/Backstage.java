@@ -1,31 +1,17 @@
 package gildedRose;
 
-public class Backstage {
-
+public class Backstage extends RoseFather{
     public Backstage(Item item) {
-        this.item = item;
+        super(item);
     }
 
-    private Item item;
-
+    @Override
     public Item GildedRose() {
         subSellIn();
         if (item.sellIn < 0) resetQualityToZero();
         else addQuality(compareToBackstage());
         return item;
     }
-
-
-    private void subSellIn() {
-        item.sellIn = item.sellIn - 1;
-    }
-
-
-    private void addQuality(int num) {
-        item.quality = item.quality + num;
-    }
-
-
     private int compareToBackstage(){
         if (item.quality < 6)
             return 3;

@@ -1,12 +1,11 @@
 package gildedRose;
 
-public class OtherScene {
-    public OtherScene(Item item) {
-        this.item = item;
+public class OtherRose extends RoseFather{
+    public OtherRose(Item item) {
+        super(item);
     }
 
-    private Item item;
-
+    @Override
     public Item GildedRose() {
         subSellIn();
         int subNum = item.sellIn < 0 && item.quality < 50 ? 2 : 1;
@@ -14,10 +13,6 @@ public class OtherScene {
         return item;
     }
 
-
-    private void subSellIn() {
-        item.sellIn = item.sellIn - 1;
-    }
 
     private void subQuality(int subNum) {
         item.quality = item.quality - subNum;

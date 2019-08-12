@@ -1,27 +1,15 @@
 package gildedRose;
 
-public class AgedBrie {
-
+public class AgedBrie extends RoseFather{
     public AgedBrie(Item item) {
-        this.item = item;
+        super(item);
     }
 
-    private Item item;
-
+    @Override
     public Item GildedRose() {
         subSellIn();
         int addNum = item.sellIn < 0 && item.quality < 50 ? 2 : 1;
         addQuality(addNum);
         return item;
-    }
-
-
-    private void subSellIn() {
-        item.sellIn = item.sellIn - 1;
-    }
-
-
-    private void addQuality(int num) {
-        item.quality = item.quality + num;
     }
 }

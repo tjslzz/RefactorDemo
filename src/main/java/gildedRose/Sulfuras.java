@@ -1,18 +1,13 @@
 package gildedRose;
 
-public class Sulfuras {
-
+public class Sulfuras extends RoseFather{
     public Sulfuras(Item item) {
-        this.item = item;
+        super(item);
     }
 
-    private Item item;
-
+    @Override
     public Item GildedRose() {
         if (item.quality < 50) addQuality( 1);
         return item;
-    }
-    private void addQuality(int num) {
-        item.quality = item.quality + num;
     }
 }

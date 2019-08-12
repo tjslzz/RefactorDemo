@@ -30,7 +30,7 @@ public class GildedRose {
                 items[i] = new Sulfuras(items[i]).GildedRose();
                 break;
             default:
-                items[i] = new OtherScene(items[i]).GildedRose();
+                items[i] = new OtherRose(items[i]).GildedRose();
                 break;
         }
     }
