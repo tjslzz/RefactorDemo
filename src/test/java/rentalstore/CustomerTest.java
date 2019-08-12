@@ -69,5 +69,12 @@ public class CustomerTest {
 
     }
 
+    @Test
+    public void should_return_rentalReciept_when_call_htmlStatement() {
+        Customer customer = new Customer("Felicity");
+        assertEquals("<H1>Rentals for <EM>Felicity</EM></H1><P>\n" +
+                "<P>You owe<EM>0.0</EM><P>\n" +
+                "On this rental you earned <EM>0</EM> frequent renter points<P>", customer.htmlStatement());
+    }
 
 }
