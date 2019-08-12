@@ -128,7 +128,7 @@ public class GildedRoseTest {
         assertEquals(1,items[0].sellIn);
     }
     @Test
-    public void should_return_42_quality_when_call_updateQuality_given_40_of_quality_and_backstage_and_1_of_sellin(){
+    public void should_return_42_quality_when_call_updateQuality_given_40_of_quality_and_aged_brie_and_1_of_sellin(){
         //given
         items[0] = new Item("Aged Brie",-1,40);
         items[1] = new Item("Backstage passes to a TAFKAL80ETC concert",40,40);
@@ -139,7 +139,7 @@ public class GildedRoseTest {
         assertEquals(42,items[0].quality);
     }
     @Test
-    public void should_return_51_quality_when_call_updateQuality_given_51_of_quality_and_backstage_and_1_of_sellin(){
+    public void should_return_51_quality_when_call_updateQuality_given_51_of_quality_and_aged_brie_and_1_of_sellin(){
         //given
         items[0] = new Item("Aged Brie",-1,51);
         items[1] = new Item("Backstage passes to a TAFKAL80ETC concert",40,40);
@@ -148,5 +148,16 @@ public class GildedRoseTest {
         gildedRose.updateQuality();
         //then
         assertEquals(51,items[0].quality);
+    }
+    @Test
+    public void should_return_0_quality_when_call_updateQuality_given_51_of_quality_and_backstage_and_1_of_sellin(){
+        //given
+        items[0] = new Item("Aged Brie",-1,51);
+        items[1] = new Item("Backstage passes to a TAFKAL80ETC concert",-1,40);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals(0,items[1].quality);
     }
 }
