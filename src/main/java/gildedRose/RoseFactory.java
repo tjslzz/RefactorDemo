@@ -14,7 +14,7 @@ public class RoseFactory implements RoseFactoryInterface {
             case SULFURAS:
                 return new Sulfuras(item).GildedRose();
             default:
-                return new OtherRose(item).GildedRose();
+                return new BasicRose(item).GildedRose();
         }
     }
 }

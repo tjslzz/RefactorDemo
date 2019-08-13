@@ -1,7 +1,7 @@
 package gildedRose;
 
-public class OtherRose extends RoseFather {
-    public OtherRose(Item item) {
+public class BasicRose extends RoseFather {
+    public BasicRose(Item item) {
         super(item);
     }
 

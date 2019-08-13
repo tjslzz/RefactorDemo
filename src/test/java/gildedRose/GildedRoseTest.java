@@ -96,6 +96,18 @@ public class GildedRoseTest {
         //then
         assertEquals("Backstage passes to a TAFKAL80ETC concert, 39, 50", items[0].toString());
     }
+
+    @Test
+    public void should_return_fu2_0_when_call_updateQuality_given_fu1_of_sellin_and_conjured() {
+        //given
+        items[0] = new Item("somethingCool", -1, 2);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("somethingCool, -2, -2", items[0].toString());
+    }
+
 //
 //    @Test
 //    public void should_return_0_quality_when_call_updateQuality_given_not_a_sulfuras() {
