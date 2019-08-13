@@ -18,4 +18,6 @@ public abstract class RoseFather {
     }
 
     public abstract Item GildedRose();
+
+    public abstract boolean isItemValid();
 }

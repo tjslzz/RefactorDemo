@@ -8,7 +8,12 @@ public class Sulfuras extends RoseFather {
 
     @Override
     public Item GildedRose() {
-        if (item.quality < LIMIT) addQuality(1);
+        if (isItemValid()) addQuality(1);
         return item;
+    }
+
+    @Override
+    public boolean isItemValid() {
+        return item.quality < LIMIT;
     }
 }

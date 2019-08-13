@@ -8,8 +8,12 @@ public class AgedBrie extends RoseFather {
     @Override
     public Item GildedRose() {
         subSellIn();
-        int addNum = item.sellIn < 0 && item.quality < LIMIT ? 2 : 1;
-        addQuality(addNum);
+        addQuality(isItemValid()? 2 : 1);
         return item;
+    }
+
+    @Override
+    public boolean isItemValid() {
+        return item.sellIn < 0 && item.quality < LIMIT ;
     }
 }

@@ -8,9 +8,13 @@ public class BasicRose extends RoseFather {
     @Override
     public Item GildedRose() {
         subSellIn();
-        int subNum = item.sellIn < 0 && item.quality < LIMIT ? 2 : 1;
-        subQuality(subNum);
+        subQuality(isItemValid()? 2 : 1);
         return item;
+    }
+
+    @Override
+    public boolean isItemValid() {
+        return item.sellIn < 0 && item.quality < LIMIT;
     }
 
     void subQuality(int subNum) {
