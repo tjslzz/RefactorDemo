@@ -1,7 +1,7 @@
 package gildedRose;
 
 public class BasicRose extends RoseFather {
-    public BasicRose(Item item) {
+    BasicRose(Item item) {
         super(item);
     }
 
@@ -13,7 +13,7 @@ public class BasicRose extends RoseFather {
         return item;
     }
 
-    protected void subQuality(int subNum) {
+    void subQuality(int subNum) {
         item.quality = item.quality - subNum;
     }
 }

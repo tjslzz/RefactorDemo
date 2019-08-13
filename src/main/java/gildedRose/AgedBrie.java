@@ -1,7 +1,7 @@
 package gildedRose;
 
 public class AgedBrie extends RoseFather {
-    public AgedBrie(Item item) {
+    AgedBrie(Item item) {
         super(item);
     }
 

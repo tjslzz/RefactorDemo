@@ -108,6 +108,16 @@ public class GildedRoseTest {
         assertEquals("Conjured, -2, -2", items[0].toString());
     }
 
+    @Test
+    public void should_return_0_when_call_updateQuality_given_fu1_of_sellin_and_conjured() {
+        //given
+        items[0] = new Item("Conjured", 1, 2);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("Conjured, 0, 0", items[0].toString());
+    }
 //
 //    @Test
 //    public void should_return_0_quality_when_call_updateQuality_given_not_a_sulfuras() {

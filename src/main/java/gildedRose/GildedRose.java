@@ -1,13 +1,13 @@
 package gildedRose;
 
-public class GildedRose {
-    Item[] items;
+class GildedRose {
+    private Item[] items;
 
-    public GildedRose(Item[] items) {
+    GildedRose(Item[] items) {
         this.items = items;
     }
 
-    public void updateQuality() {
+    void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             items[i] = new RoseFactory().handleQualityWithSellIn(items[i]);
         }
