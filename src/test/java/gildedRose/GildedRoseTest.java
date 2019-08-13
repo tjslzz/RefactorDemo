@@ -8,9 +8,8 @@ public class GildedRoseTest {
 
     private Item[] items = new Item[1];
 
-
     @Test
-    public void should_return_42_quality_when_call_updateQuality_given_40_of_quality_and_aged_brie_and_1_of_sellin() {
+    public void should_return_Aged_Brie_fu2_42_when_call_updateQuality_given_40_of_quality_and_aged_brie_and_fu1_of_sellin() {
         //given
         items[0] = new Item("Aged Brie", -1, 40);
         GildedRose gildedRose = new GildedRose(items);
@@ -21,7 +20,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_return_0_quality_when_call_updateQuality_given_51_of_quality_and_backstage_and_1_of_sellin() {
+    public void should_return_backstage_2_0_when_call_updateQuality_given_40_of_quality_and_backstage_and_fu1_of_sellin() {
         //given
         items[0] = new Item("Backstage passes to a TAFKAL80ETC concert", -1, 40);
         GildedRose gildedRose = new GildedRose(items);
@@ -32,7 +31,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_return_0_quality_when_call_updateQuality_given_1_of_sellin_and_something_cool() {
+    public void should_return_fu2_0_when_call_updateQuality_given_fu1_of_sellin_and_something_cool() {
         //given
         items[0] = new Item("somethingCool", -1, 2);
         GildedRose gildedRose = new GildedRose(items);
@@ -40,6 +39,62 @@ public class GildedRoseTest {
         gildedRose.updateQuality();
         //then
         assertEquals("somethingCool, -2, 0", items[0].toString());
+    }
+
+    @Test
+    public void should_return_sulfuras_1_2when_call_updateQuality_given_a_sulfuras() {
+        //given
+        items[0] = new Item("Sulfuras, Hand of Ragnaros", 1, 1);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("Sulfuras, Hand of Ragnaros, 1, 2", items[0].toString());
+    }
+
+    @Test
+    public void should_return_backstage_39_41_when_call_updateQuality_given_40_of_quality_and_backstage_and_40_of_sellin() {
+        //given
+        items[0] = new Item("Backstage passes to a TAFKAL80ETC concert", 40, 40);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 39, 41", items[0].toString());
+    }
+
+
+    @Test
+    public void should_return__backstage_39_8_when_call_updateQuality_given_5_of_quality_and_backstage_and_40_of_sellin() {
+        //given
+        items[0] = new Item("Backstage passes to a TAFKAL80ETC concert", 40, 5);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 39, 8", items[0].toString());
+    }
+
+    @Test
+    public void should_return_backstage_39_12_when_call_updateQuality_given_10_of_quality_and_backstage_and_40_of_sellin() {
+        //given
+        items[0] = new Item("Backstage passes to a TAFKAL80ETC concert", 40, 10);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 39, 12", items[0].toString());
+    }
+
+    @Test
+    public void should_return_backstage_39_50_when_call_updateQuality_given_50_of_quality_and_backstage_and_40_of_sellin() {
+        //given
+        items[0] = new Item("Backstage passes to a TAFKAL80ETC concert", 40, 50);
+        GildedRose gildedRose = new GildedRose(items);
+        //when
+        gildedRose.updateQuality();
+        //then
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 39, 50", items[0].toString());
     }
 //
 //    @Test
@@ -52,17 +107,7 @@ public class GildedRoseTest {
 //        //then
 //        assertEquals("Not Sulfuras, Hand of Ragnaros, 0, 0", items[0].toString());
 //    }
-//
-//    @Test
-//    public void should_return_1_quality_when_call_updateQuality_given_a_sulfuras() {
-//        //given
-//        items[0] = new Item("Sulfuras, Hand of Ragnaros", 1, 1);
-//        GildedRose gildedRose = new GildedRose(items);
-//        //when
-//        gildedRose.updateQuality();
-//        //then
-//        assertEquals("Sulfuras, Hand of Ragnaros, 1, 1", items[0].toString());
-//    }
+
 //
 //    @Test
 //    public void should_return_50_quality_when_call_updateQuality_given_50_of_quality_and_aged_brie() {
@@ -84,17 +129,6 @@ public class GildedRoseTest {
 //        gildedRose.updateQuality();
 //        //then
 //        assertEquals("Aged Brie, 0, 41", items[0].toString());
-//    }
-//
-//    @Test
-//    public void should_return_41_quality_when_call_updateQuality_given_40_of_quality_and_backstage_and_40_of_sellin() {
-//        //given
-//        items[0] = new Item("Backstage passes to a TAFKAL80ETC concert", 40, 40);
-//        GildedRose gildedRose = new GildedRose(items);
-//        //when
-//        gildedRose.updateQuality();
-//        //then
-//        assertEquals("Backstage passes to a TAFKAL80ETC concert, 39, 41", items[0].toString());
 //    }
 //
 //    @Test
