@@ -13,7 +13,7 @@ public class BasicRose extends RoseFather {
         return item;
     }
 
-    private void subQuality(int subNum) {
+    protected void subQuality(int subNum) {
         item.quality = item.quality - subNum;
     }
 }
